@@ -1,0 +1,66 @@
+1. What is Node.js and how does it differ from traditional server-side technologies?
+Node.js is an open-source, server-side runtime environment that executes JavaScript outside the browser using the V8 engine. Unlike traditional server-side technologies (e.g., PHP, Java, Ruby), which are often multi-threaded and blocking, Node.js is single-threaded, non-blocking, and event-driven, enabling high concurrency with fewer resources. Traditional technologies typically spawn new threads for each request, which can be resource-intensive, while Node.js handles requests asynchronously, making it lightweight and efficient for I/O-heavy applications.
+
+2. Explain the relationship between Node.js and the V8 JavaScript engine.
+Node.js uses the V8 JavaScript engine, developed by Google for Chrome, to execute JavaScript code. V8 compiles JavaScript into native machine code for fast performance. Node.js extends V8 by adding APIs and libraries (e.g., for file system access, networking) to enable server-side functionality, making it possible to run JavaScript outside browsers.
+
+3. What are the key features that make Node.js suitable for modern web applications?  
+Non-blocking I/O: Handles multiple requests concurrently without waiting for operations to complete.  
+
+Event-driven architecture: Uses events to manage asynchronous tasks, improving efficiency.  
+
+Scalability: Manages high concurrency with a single-threaded model.  
+
+Cross-platform: Runs on Windows, macOS, and Linux.  
+
+NPM ecosystem: Provides access to a vast library of reusable packages.  
+
+Lightweight: Minimal overhead, ideal for microservices and real-time applications.
+
+
+Architecture Questions
+
+1. How does Node.js handle multiple concurrent connections despite being single-threaded?
+Node.js uses an event loop and non-blocking I/O to manage concurrent connections. The event loop processes tasks asynchronously, delegating I/O operations (e.g., database queries, file reads) to the operating system’s kernel or thread pool. When these operations complete, callbacks or promises are queued for execution, allowing Node.js to handle thousands of connections with a single thread.
+
+2. Explain the concept of non-blocking I/O in Node.js and provide an example of when it's beneficial.
+Non-blocking I/O allows Node.js to continue processing other tasks while waiting for I/O operations to complete. Instead of halting execution, Node.js registers a callback and moves on.
+Example: Reading a file asynchronously with fs.readFile():
+javascript
+
+const fs = require('fs');
+fs.readFile('data.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+});
+console.log('This runs before the file is read');
+
+Benefit: Ideal for real-time applications like chat apps, where the server can handle multiple user requests without waiting for database or file operations.
+
+3. What is the event-driven architecture in Node.js and how does it contribute to its efficiency?
+Node.js’s event-driven architecture uses an event loop to listen for and respond to events (e.g., HTTP requests, file operations). When an event occurs, a callback or promise is triggered. The event loop continuously checks the event queue, processing tasks asynchronously. This minimizes idle time, reduces resource usage, and enables efficient handling of high-concurrency workloads, making Node.js suitable for scalable applications.
+
+
+Conceptual Questions
+
+1. What is NPM and what role does it play in Node.js development?
+NPM (Node Package Manager) is a package manager for Node.js that allows developers to install, manage, and share reusable JavaScript libraries and tools. It simplifies dependency management via package.json and provides access to a vast ecosystem of packages, speeding up development and enabling modular code.
+
+2. Why is Node.js considered cross-platform, and what are the benefits of this feature?
+Node.js is cross-platform because it runs on multiple operating systems (Windows, macOS, Linux) using the same codebase. This is achieved through its reliance on V8 and platform-agnostic APIs.
+Benefits:  
+Developers can write code once and deploy it across different environments.  
+
+Simplifies development and testing workflows.  
+
+Supports diverse deployment targets, from local servers to cloud platforms.
+
+
+3. What are built-in modules in Node.js, and why are they important?
+Built-in modules are core libraries included with Node.js (e.g., fs for file system, http for HTTP servers, path for file paths). They provide essential functionality without requiring external dependencies.
+Importance:  
+Enable rapid development of server-side applications.  
+
+Ensure consistent performance and security.  
+
+Reduce reliance on third-party packages for basic tasks.
