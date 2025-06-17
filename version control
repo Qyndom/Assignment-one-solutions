@@ -1,0 +1,199 @@
+1. Explain the difference between Git and other version control systems.
+Git is a distributed version control system (DVCS), unlike centralized systems (e.g., SVN, CVS). In Git, every developer has a full copy of the repository, including its history, enabling offline work and faster operations. Centralized systems rely on a single server, which can be a bottleneck and single point of failure. Git’s branching model is also more flexible and lightweight.
+
+2. What is the purpose of a repository in version control?
+A repository (repo) is a storage location for a project’s files and their version history. It tracks changes, enables collaboration, and allows reverting to previous states. In Git, a repo contains commits, branches, and configuration files (e.g., .git).
+
+3. How does Git track changes in your codebase?
+Git tracks changes by creating snapshots of the codebase at each commit. It uses a staging area to select changes to commit, storing them as objects in the .git directory. Git compares file differences using SHA-1 hashes, enabling efficient storage and retrieval of changes.
+
+
+Branching and Merging
+
+1. What is the purpose of branching in Git?
+Branching allows developers to create isolated environments for new features, bug fixes, or experiments without affecting the main codebase. Branches enable parallel development and keep the main branch (e.g., main) stable.
+
+2. What is the difference between merging and rebasing? When would you use each?  
+Merging: Combines the histories of two branches, creating a merge commit. Preserves the original branch history.
+Use: When collaborating on shared branches to maintain a clear history (e.g., integrating a feature branch into main).  
+
+Rebasing: Moves the base of a branch to the tip of another, creating a linear history by rewriting commits.
+Use: When cleaning up a feature branch before merging or keeping a personal branch up-to-date with main.
+Note: Rebasing rewrites history, so avoid it on shared branches to prevent conflicts.
+3. How do merge conflicts occur, and what are the general steps to resolve them?
+Merge conflicts occur when Git cannot automatically reconcile changes in the same file or lines during a merge (e.g., two developers edit the same line differently).
+Steps to resolve:  
+Run git merge and note the conflicting files.  
+
+Open the files; Git marks conflicts with <<<<<<<, =======, and >>>>>>>.  
+
+Manually edit to resolve conflicts, keeping desired changes.  
+
+Mark resolved files with git add.  
+
+Complete the merge with git commit.
+
+
+Collaborative Workflow
+
+1. Explain the purpose and process of creating a pull request.
+A pull request (PR) is a request to merge changes from one branch into another (e.g., feature to main). It facilitates code review and collaboration.
+Process:  
+Push a branch with changes to a remote repository.  
+
+Create a PR via the hosting platform (e.g., GitHub, GitLab).  
+
+Team members review, comment, and approve.  
+
+Merge the PR after approval, resolving any conflicts.
+2. What is the difference between forking and cloning a repository?  
+Forking: Creates a copy of a repository under your account on a hosting platform (e.g., GitHub). Used to contribute to projects you don’t have write access to.  
+
+Cloning: Downloads a repository to your local machine for development. Can be done from any repo, including your fork or the original.
+Example: Fork a repo to propose changes, then clone your fork to work locally.
+3. How would you use Git to collaborate with other developers on the same project?  
+Create feature branches for individual tasks.  
+
+Push branches to a shared remote repository.  
+
+Use pull requests for code review and merging.  
+
+Regularly pull updates from the main branch to stay in sync.  
+
+Resolve conflicts promptly during merges.  
+
+Use tools like GitHub or GitLab for issue tracking and communication.
+
+
+Advanced Git Operations
+
+1. When and how would you use Git stash?
+When: To temporarily save uncommitted changes without committing, e.g., when switching branches or pulling updates.
+How:  
+Run git stash to save changes.  
+
+Apply stashed changes later with git stash apply or git stash pop (pop removes the stash after applying).  
+
+View stashes with git stash list.
+2. Explain the purpose of Git tags and how to create them?
+Git tags mark specific commits, typically for releases (e.g., v1.0.0).
+
+Types:  
+Lightweight: Points to a commit (git tag v1.0).  
+
+Annotated: Includes metadata like author and date (git tag -a v1.0 -m "Release v1.0").
+Push tags: git push origin v1.0.
+Use: To reference stable versions or milestones.
+3. How do you manage remote repositories in Git?  
+Add a remote: git remote add <name> <url>.  
+
+View remotes: git remote -v.  
+
+Push to a remote: git push <remote> <branch>.  
+
+Pull from a remote: git pull <remote> <branch>.  
+
+Remove a remote: git remote remove <name>.  
+
+Rename a remote: git remote rename <old> <new>.
+
+
+Discussion Questions
+Node.js
+
+1. How does Node.js’s single-threaded nature affect its performance and scalability?
+Performance: The single-threaded event loop is efficient for I/O-bound tasks (e.g., network requests), but CPU-intensive tasks (e.g., complex calculations) can block the loop, degrading performance.
+Scalability: Node.js scales well for high-concurrency applications using clustering (spawning worker processes) and load balancing. However, it requires careful design to avoid blocking the event loop.
+
+2. What are the advantages and disadvantages of using an event-driven architecture?
+Advantages:  
+Efficient handling of asynchronous tasks.  
+
+Low resource usage for high concurrency.  
+
+Simplifies real-time applications (e.g., streaming, chat).
+Disadvantages:  
+
+Complex callback or promise management (“callback hell”).  
+
+Debugging asynchronous code can be challenging.  
+
+Not ideal for CPU-heavy workloads.
+3. How does Node.js’s non-blocking I/O model benefit web applications?  
+Enables handling thousands of simultaneous connections with minimal resources.  
+
+Improves response times for I/O-heavy tasks (e.g., database queries, API calls).  
+
+Supports real-time features like live updates or notifications.  
+
+Example: A web server can process new requests while waiting for a database query to complete.
+
+
+
+Version Control
+
+1. Why is version control important in software development?  
+Tracks changes for accountability and rollback.  
+
+Enables collaboration among developers.  
+
+Supports experimentation via branching.  
+
+Preserves project history for auditing or debugging.  
+
+Facilitates deployment and release management.
+2. How does version control help in team collaboration?  
+Allows multiple developers to work on different features simultaneously via branches.  
+
+Facilitates code reviews through pull requests.  
+
+Prevents overwrites with conflict resolution workflows.  
+
+Centralizes code in remote repositories for shared access.  
+
+Integrates with tools for task tracking and communication.
+3. What are the best practices for organizing a Git repository?  
+Use a single main branch for production-ready code.  
+
+Create feature branches for new work (e.g., feature/login).  
+
+Write clear, descriptive commit messages.  
+
+Keep repositories focused (e.g., one project per repo).  
+
+Include a README, .gitignore, and license file.  
+
+Regularly clean up merged branches and stale tags.
+
+
+Combined Concepts
+
+1. How would you explain the relationship between Node.js and version control in a development workflow?
+Node.js projects rely on version control (e.g., Git) to manage source code, dependencies, and collaboration. Developers use Git to track changes in Node.js files (e.g., server.js, package.json), create branches for features or bug fixes, and collaborate via pull requests. Version control ensures a Node.js project’s history is preserved, enabling rollbacks or team synchronization, while Node.js’s package.json integrates with Git to manage dependencies consistently.
+
+2. What are the key considerations when setting up a new Node.js project with version control?  
+Initialize a Git repository (git init) and create a remote (e.g., on GitHub).  
+
+Set up a .gitignore file to exclude node_modules, logs, and sensitive files.  
+
+Create a package.json with npm init to define dependencies and scripts.  
+
+Commit initial files (e.g., README, server.js) and push to the remote.  
+
+Define a branching strategy (e.g., main for stable code, feature branches for development).  
+
+Ensure team members use consistent Node.js and npm versions (e.g., via .nvmrc).
+3. How can version control help in managing Node.js dependencies?  
+Track package.json and package-lock.json in Git to ensure consistent dependency versions across environments.  
+
+Use commit messages to document dependency updates (e.g., upgrading Express).  
+
+Create branches to test new dependency versions before merging.  
+
+Use Git tags to mark stable releases with specific dependency sets.  
+
+Revert to previous commits if dependency issues arise.
+
+Explore NPM ecosystem
+
+Compare Git with SVN
